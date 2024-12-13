@@ -1,98 +1,87 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import { Searchbar, Chip, Text, Title } from 'react-native-paper';
+import { StyleSheet, View, Image, ScrollView } from 'react-native';
+import { Button, Text, Modal, Portal, Surface } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { GameCard } from './components/GameCard';
-import { Game } from './types';
+import { router } from 'expo-router';
+import { GuestRegistrationForm } from './components/GuestRegistrationForm';
 
-// TODO: Replace with actual data fetching
-const mockGames: Game[] = [
-  {
-    id: '1',
-    title: 'Basic Mathematics',
-    subject: 'Mathematics',
-    educationLevel: 'Primary',
-    topic: 'Addition and Subtraction',
-    questions: [],
-    isLocked: false,
-  },
-  {
-    id: '2',
-    title: 'English Grammar',
-    subject: 'English',
-    educationLevel: 'Primary',
-    topic: 'Parts of Speech',
-    questions: [],
-    isLocked: true,
-  },
-];
+export default function WelcomeScreen() {
+  const [guestModalVisible, setGuestModalVisible] = useState(false);
 
-const subjects = ['All', 'Mathematics', 'English', 'Science', 'History'];
-const levels = ['All', 'Primary', 'Secondary', 'High School'];
+  const showGuestModal = () => setGuestModalVisible(true);
+  const hideGuestModal = () => setGuestModalVisible(false);
 
-export default function Index() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedSubject, setSelectedSubject] = useState('All');
-  const [selectedLevel, setSelectedLevel] = useState('All');
-
-  const filteredGames = mockGames.filter(game => {
-    const matchesSearch = game.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      game.topic.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesSubject = selectedSubject === 'All' || game.subject === selectedSubject;
-    const matchesLevel = selectedLevel === 'All' || game.educationLevel === selectedLevel;
-    return matchesSearch && matchesSubject && matchesLevel;
-  });
+  const handlePremiumFeature = () => {
+    // TODO: Implement premium feature notification
+    alert('This feature is only available in the premium version.');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Title style={styles.title}>EduGamez</Title>
-        <Searchbar
-          placeholder="Search games..."
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-          style={styles.searchBar}
-        />
-      </View>
-
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
-        <View style={styles.chipGroup}>
-          {subjects.map(subject => (
-            <Chip
-              key={subject}
-              selected={selectedSubject === subject}
-              onPress={() => setSelectedSubject(subject)}
-              style={styles.chip}
-            >
-              {subject}
-            </Chip>
-          ))}
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../assets/images/edugamez-logo.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+          <Text variant="headlineLarge" style={styles.title}>
+            EduGamez
+          </Text>
+          <Text variant="bodyLarge" style={styles.subtitle}>
+            Learn Through Play
+          </Text>
         </View>
-      </ScrollView>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
-        <View style={styles.chipGroup}>
-          {levels.map(level => (
-            <Chip
-              key={level}
-              selected={selectedLevel === level}
-              onPress={() => setSelectedLevel(level)}
-              style={styles.chip}
-            >
-              {level}
-            </Chip>
-          ))}
+        <View style={styles.buttonContainer}>
+          <Button
+            mode="contained"
+            onPress={handlePremiumFeature}
+            style={styles.button}
+            icon="account-key"
+          >
+            Login
+          </Button>
+
+          <Button
+            mode="contained"
+            onPress={handlePremiumFeature}
+            style={styles.button}
+            icon="account-plus"
+          >
+            Sign Up
+          </Button>
+
+          <Button
+            mode="outlined"
+            onPress={showGuestModal}
+            style={styles.button}
+            icon="account"
+          >
+            Continue as Guest
+          </Button>
         </View>
-      </ScrollView>
 
-      <ScrollView style={styles.gamesContainer}>
-        {filteredGames.length > 0 ? (
-          filteredGames.map(game => (
-            <GameCard key={game.id} game={game} />
-          ))
-        ) : (
-          <Text style={styles.noGames}>No games found</Text>
-        )}
+        <Portal>
+          <Modal
+            visible={guestModalVisible}
+            onDismiss={hideGuestModal}
+            contentContainerStyle={styles.modalContainer}
+          >
+            <Surface style={styles.modalContent}>
+              <Text variant="titleLarge" style={styles.modalTitle}>
+                Quick Registration
+              </Text>
+              <Text variant="bodyMedium" style={styles.modalSubtitle}>
+                Please provide a few details to get started
+              </Text>
+              <GuestRegistrationForm />
+              <Button onPress={hideGuestModal} style={styles.cancelButton}>
+                Cancel
+              </Button>
+            </Surface>
+          </Modal>
+        </Portal>
       </ScrollView>
     </SafeAreaView>
   );
@@ -103,36 +92,56 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
-  header: {
+  scrollContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
     padding: 16,
-    backgroundColor: '#fff',
-    elevation: 4,
   },
-  title: {
-    fontSize: 24,
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 48,
+  },
+  logo: {
+    width: 150,
+    height: 150,
     marginBottom: 16,
   },
-  searchBar: {
-    elevation: 0,
-  },
-  filtersContainer: {
-    paddingHorizontal: 16,
-    marginVertical: 8,
-  },
-  chipGroup: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-  chip: {
-    marginRight: 8,
-  },
-  gamesContainer: {
-    flex: 1,
-    padding: 8,
-  },
-  noGames: {
+  title: {
+    fontWeight: 'bold',
+    marginBottom: 8,
     textAlign: 'center',
-    marginTop: 24,
-    fontSize: 16,
+  },
+  subtitle: {
+    color: '#666',
+    textAlign: 'center',
+  },
+  buttonContainer: {
+    gap: 16,
+    width: '100%',
+    maxWidth: 300,
+    alignSelf: 'center',
+  },
+  button: {
+    width: '100%',
+  },
+  modalContainer: {
+    padding: 16,
+  },
+  modalContent: {
+    padding: 24,
+    borderRadius: 12,
+    elevation: 5,
+  },
+  modalTitle: {
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  modalSubtitle: {
+    textAlign: 'center',
+    marginBottom: 24,
+    color: '#666',
+  },
+  cancelButton: {
+    marginTop: 8,
   },
 });
