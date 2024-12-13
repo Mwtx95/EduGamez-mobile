@@ -25,11 +25,11 @@ export default function WelcomeScreen() {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text variant="headlineLarge" style={styles.title}>
+          {/* <Text variant="headlineLarge" style={styles.title}>
             EduGamez
-          </Text>
+          </Text> */}
           <Text variant="bodyLarge" style={styles.subtitle}>
-            Learn Through Play
+            Learn Through Playing
           </Text>
         </View>
 

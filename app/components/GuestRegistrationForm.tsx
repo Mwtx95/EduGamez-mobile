@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { TextInput, Button, HelperText } from 'react-native-paper';
+import { TextInput, Button, HelperText, Menu, TouchableRipple, Text } from 'react-native-paper';
 import { router } from 'expo-router';
 
 interface GuestUser {
@@ -9,6 +9,12 @@ interface GuestUser {
   educationLevel: string;
 }
 
+const educationLevels = [
+  'Lower Primary',
+  'Upper Primary',
+  'O Level',
+];
+
 export const GuestRegistrationForm = () => {
   const [guestData, setGuestData] = useState<GuestUser>({
     nickname: '',
@@ -16,6 +22,7 @@ export const GuestRegistrationForm = () => {
     educationLevel: '',
   });
   const [errors, setErrors] = useState<Partial<GuestUser>>({});
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const validate = () => {
     const newErrors: Partial<GuestUser> = {};
@@ -68,14 +75,36 @@ export const GuestRegistrationForm = () => {
         {errors.age}
       </HelperText>
 
-      <TextInput
-        label="Education Level"
-        value={guestData.educationLevel}
-        onChangeText={(text) => setGuestData({ ...guestData, educationLevel: text })}
-        mode="outlined"
-        style={styles.input}
-        error={!!errors.educationLevel}
-      />
+      <Menu
+        visible={menuVisible}
+        onDismiss={() => setMenuVisible(false)}
+        anchor={
+          <TouchableRipple onPress={() => setMenuVisible(true)}>
+            <View>
+              <TextInput
+                label="Education Level"
+                value={guestData.educationLevel}
+                mode="outlined"
+                style={styles.input}
+                error={!!errors.educationLevel}
+                editable={false}
+                right={<TextInput.Icon icon="menu-down" />}
+              />
+            </View>
+          </TouchableRipple>
+        }
+      >
+        {educationLevels.map((level) => (
+          <Menu.Item
+            key={level}
+            onPress={() => {
+              setGuestData({ ...guestData, educationLevel: level });
+              setMenuVisible(false);
+            }}
+            title={level}
+          />
+        ))}
+      </Menu>
       <HelperText type="error" visible={!!errors.educationLevel}>
         {errors.educationLevel}
       </HelperText>
