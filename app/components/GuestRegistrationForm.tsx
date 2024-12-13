@@ -9,13 +9,17 @@ interface GuestUser {
   educationLevel: string;
 }
 
+interface GuestRegistrationFormProps {
+  onSubmit: () => void;
+}
+
 const educationLevels = [
   'Lower Primary',
   'Upper Primary',
   'O Level',
 ];
 
-export const GuestRegistrationForm = () => {
+export const GuestRegistrationForm: React.FC<GuestRegistrationFormProps> = ({ onSubmit }) => {
   const [guestData, setGuestData] = useState<GuestUser>({
     nickname: '',
     age: '',
@@ -44,6 +48,7 @@ export const GuestRegistrationForm = () => {
   const handleSubmit = () => {
     if (validate()) {
       // TODO: Save guest data to local storage or state management
+      onSubmit(); // Call the onSubmit callback
       router.push('/home');
     }
   };

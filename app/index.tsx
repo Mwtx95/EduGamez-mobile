@@ -75,7 +75,7 @@ export default function WelcomeScreen() {
               <Text variant="bodyMedium" style={styles.modalSubtitle}>
                 Please provide a few details to get started
               </Text>
-              <GuestRegistrationForm />
+              <GuestRegistrationForm onSubmit={hideGuestModal} />
               <Button onPress={hideGuestModal} style={styles.cancelButton}>
                 Cancel
               </Button>
