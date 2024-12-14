@@ -49,7 +49,7 @@ export const GuestRegistrationForm: React.FC<GuestRegistrationFormProps> = ({ on
     if (validate()) {
       // TODO: Save guest data to local storage or state management
       onSubmit(); // Call the onSubmit callback
-      router.push('/home');
+      router.replace('/(tabs)/home');
     }
   };
 
