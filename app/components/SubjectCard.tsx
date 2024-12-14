@@ -41,16 +41,17 @@ export function SubjectCard({ subject, isSelected, onPress }: SubjectCardProps) 
 
 const styles = StyleSheet.create({
   card: {
-    padding: 16,
-    margin: 8,
+    padding: 12,
+    margin: 6,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 120,
-    height: 100,
+    width: 100,
+    height: 80,
   },
   text: {
-    marginTop: 8,
+    marginTop: 4,
     textAlign: 'center',
+    fontSize: 12,
   },
 });

@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    padding: 16,
+    padding: 12,
     backgroundColor: '#fff',
     elevation: 4,
   },
@@ -156,18 +156,20 @@ const styles = StyleSheet.create({
   subjectsContainer: {
     backgroundColor: '#fff',
     elevation: 4,
+    maxHeight: 100, // Adjusted to fit subject cards perfectly
   },
   subjectsContent: {
-    padding: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
   },
   content: {
     flex: 1,
   },
   section: {
-    padding: 16,
+    padding: 12,
   },
   sectionTitle: {
-    marginBottom: 16,
+    marginBottom: 12,
   },
   gamesGrid: {
     flexDirection: 'row',
@@ -175,6 +177,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   divider: {
-    marginVertical: 8,
+    marginVertical: 6,
   },
 });

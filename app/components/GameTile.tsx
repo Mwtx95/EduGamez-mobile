@@ -60,40 +60,44 @@ export function GameTile({ game, onPress }: GameTileProps) {
 
 const styles = StyleSheet.create({
   card: {
-    margin: 8,
+    margin: 6,
     flex: 1,
-    maxWidth: '45%',
+    maxWidth: '47%',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   title: {
-    marginBottom: 4,
+    marginBottom: 2,
+    fontSize: 14,
   },
   topic: {
     opacity: 0.7,
-    marginBottom: 8,
+    marginBottom: 6,
+    fontSize: 12,
   },
   progressContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    marginBottom: 8,
+    gap: 6,
+    marginBottom: 6,
   },
   progressBar: {
     flex: 1,
-    height: 4,
+    height: 3,
   },
   progressText: {
     opacity: 0.7,
+    fontSize: 10,
   },
   chip: {
-    height: 24,
+    height: 20,
   },
   badge: {
     alignSelf: 'flex-start',
+    height: 20,
   },
 });
