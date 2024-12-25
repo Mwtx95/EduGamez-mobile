@@ -1,6 +1,12 @@
+import React from 'react';
 import { Tabs } from 'expo-router';
 import { useTheme } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Avatar } from '../components';
+
+const renderHeaderRight = () => (
+  <Avatar size={40} style={{ marginRight: 10 }} />
+);
 
 export default function TabLayout() {
   const theme = useTheme();
@@ -25,6 +31,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
+          headerRight: renderHeaderRight,
         }}
       />
       <Tabs.Screen
@@ -34,6 +41,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="check-circle" size={size} color={color} />
           ),
+          headerRight: renderHeaderRight,
         }}
       />
       <Tabs.Screen
@@ -43,6 +51,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="trophy" size={size} color={color} />
           ),
+          headerRight: renderHeaderRight,
         }}
       />
       <Tabs.Screen

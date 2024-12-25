@@ -1,6 +1,8 @@
+
+// THis doesn't work
 import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import { Searchbar, Chip, Text, Title } from 'react-native-paper';
+import { Searchbar, Chip, Text, Title, Avatar } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GameCard } from './components/GameCard';
 import { Game } from './types';
@@ -15,6 +17,9 @@ const mockGames: Game[] = [
     topic: 'Addition and Subtraction',
     questions: [],
     isLocked: false,
+    description: '',
+    progress: 0,
+    status: 'not_started'
   },
   {
     id: '2',
@@ -24,6 +29,9 @@ const mockGames: Game[] = [
     topic: 'Parts of Speech',
     questions: [],
     isLocked: true,
+    description: '',
+    progress: 0,
+    status: 'not_started'
   },
 ];
 
@@ -47,6 +55,7 @@ export default function Index() {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Title style={styles.title}>EduGamez</Title>
+        <Avatar.Image size={40} source={{ uri: 'https://avatars.githubusercontent.com/u/141448135?v=4&size=64' }} />
         <Searchbar
           placeholder="Search games..."
           onChangeText={setSearchQuery}
@@ -107,13 +116,16 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#fff',
     elevation: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   title: {
     fontSize: 24,
-    marginBottom: 16,
   },
   searchBar: {
-    elevation: 0,
+    flex: 1,
+    marginLeft: 16,
   },
   filtersContainer: {
     paddingHorizontal: 16,

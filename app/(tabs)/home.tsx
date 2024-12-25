@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
-import { Searchbar, Text, Button, useTheme, Divider } from 'react-native-paper';
+import { Text, Button, useTheme, Divider } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SubjectCard } from '../components/SubjectCard';
 import { GameTile } from '../components/GameTile';
@@ -63,12 +63,12 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
-        <Searchbar
-          placeholder="Search games..."
-          onChangeText={setSearchQuery}
-          value={searchQuery}
-          style={styles.searchBar}
-        />
+        {/*<Searchbar*/}
+        {/*  placeholder="Search games..."*/}
+        {/*  onChangeText={setSearchQuery}*/}
+        {/*  value={searchQuery}*/}
+        {/*  style={styles.searchBar}*/}
+        {/*/>*/}
       </View>
 
       {/* Subjects ScrollView */}
@@ -120,10 +120,10 @@ export default function HomeScreen() {
 
         <Divider style={styles.divider} />
 
-        {/* All Games Section */}
+        {/* Multiplayer Section */}
         <View style={styles.section}>
           <Text variant="titleMedium" style={styles.sectionTitle}>
-            {selectedSubject ? subjects.find(s => s.id === selectedSubject)?.name : 'All Games'}
+            {selectedSubject ? subjects.find(s => s.id === selectedSubject)?.name : 'Play Multiplayer'}
           </Text>
           <View style={styles.gamesGrid}>
             {filteredGames.map(game => (
