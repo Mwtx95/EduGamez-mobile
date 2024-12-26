@@ -22,6 +22,7 @@ export default function TabLayout() {
           borderTopColor: theme.colors.outline,
           borderTopWidth: 0.5,
         },
+        headerRight: renderHeaderRight,
       }}
     >
       <Tabs.Screen
@@ -31,7 +32,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
-          headerRight: renderHeaderRight,
         }}
       />
       <Tabs.Screen
@@ -41,7 +41,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="check-circle" size={size} color={color} />
           ),
-          headerRight: renderHeaderRight,
         }}
       />
       <Tabs.Screen
@@ -51,7 +50,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="trophy" size={size} color={color} />
           ),
-          headerRight: renderHeaderRight,
         }}
       />
       <Tabs.Screen
@@ -61,6 +59,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" size={size} color={color} />
           ),
+          headerRight: undefined,
         }}
       />
     </Tabs>

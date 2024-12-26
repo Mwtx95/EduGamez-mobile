@@ -309,6 +309,16 @@ export default function HomeScreen() {
         {/*/>*/}
       </View>
 
+      {/* Subject Selection Header */}
+      <View style={styles.subjectHeaderContainer}>
+        <Text variant="titleLarge" style={styles.subjectHeaderText}>
+          Select a Subject to Play
+        </Text>
+        {/* <Text variant="bodyMedium" style={styles.subjectSubheaderText}>
+          Choose a topic that sparks your curiosity and start your learning journey!
+        </Text> */}
+      </View>
+
       {/* Subjects ScrollView */}
       <ScrollView
         horizontal
@@ -330,7 +340,7 @@ export default function HomeScreen() {
         {/* Single Player Section */}
         {renderGamesSection(
           singlePlayerGames,
-          'Play Single-Player'
+          'Select a Topic to Play'
         )}
 
         <Divider style={styles.divider} />
@@ -387,5 +397,14 @@ const styles = StyleSheet.create({
   },
   divider: {
     marginVertical: 8,
+  },
+  subjectHeaderContainer: {
+    padding: 16,
+  },
+  subjectHeaderText: {
+    marginBottom: 4,
+  },
+  subjectSubheaderText: {
+    color: '#666',
   },
 });
