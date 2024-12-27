@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { StyleSheet, View, ScrollView, FlatList, Dimensions } from 'react-native';
-import { Text, Button, useTheme, Divider } from 'react-native-paper';
+import { Text, Button, useTheme, Divider, Searchbar } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SubjectCard } from '../components/SubjectCard';
 import { GameTile } from '../components/GameTile';
@@ -298,25 +298,18 @@ export default function HomeScreen() {
     </View>
   );
 
+  const handleMultiplayerPress = () => {
+    // TODO: Replace with actual premium upgrade logic
+    alert('Upgrade to premium to access multiplayer games!');
+  };
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        {/*<Searchbar*/}
-        {/*  placeholder="Search games..."*/}
-        {/*  onChangeText={setSearchQuery}*/}
-        {/*  value={searchQuery}*/}
-        {/*  style={styles.searchBar}*/}
-        {/*/>*/}
-      </View>
-
       {/* Subject Selection Header */}
       <View style={styles.subjectHeaderContainer}>
         <Text variant="titleLarge" style={styles.subjectHeaderText}>
-          Select a Subject to Play
+          Select a subject
         </Text>
-        {/* <Text variant="bodyMedium" style={styles.subjectSubheaderText}>
-          Choose a topic that sparks your curiosity and start your learning journey!
-        </Text> */}
       </View>
 
       {/* Subjects ScrollView */}
@@ -338,20 +331,52 @@ export default function HomeScreen() {
 
       <ScrollView style={styles.content}>
         {/* Single Player Section */}
-        {renderGamesSection(
-          singlePlayerGames,
-          'Select a Topic to Play'
-        )}
+        <View style={styles.section}>
+          <Text variant="titleMedium" style={styles.sectionTitle}>
+            Select a topic to play
+          </Text>
+          <Searchbar
+            placeholder="Search games..."
+            onChangeText={setSearchQuery}
+            value={searchQuery}
+            style={styles.searchBar}
+          />
+          <ScrollView 
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.gamesScrollContent}
+          >
+            {singlePlayerGames
+              .filter(game => 
+                game.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                game.topic.toLowerCase().includes(searchQuery.toLowerCase())
+              )
+              .map(game => (
+                <View key={game.id} style={styles.gameCard}>
+                  <GameTile
+                    game={game}
+                    onPress={() => router.push(`/game/${game.id}`)}
+                  />
+                </View>
+              ))
+            }
+          </ScrollView>
+        </View>
 
         <Divider style={styles.divider} />
 
         {/* Multiplayer Section */}
-        {renderGamesSection(
-          multiPlayerGames,
-          selectedSubject 
-            ? subjects.find(s => s.id === selectedSubject)?.name || 'Play Multi-player'
-            : 'Play Multi-player'
-        )}
+        <View style={styles.section}>
+          <View style={styles.multiplayerButtonContainer}>
+            <Button
+              mode="contained"
+              onPress={handleMultiplayerPress}
+              style={styles.multiplayerButton}
+            >
+              Switch to multiplayer mode
+            </Button>
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -366,7 +391,10 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   searchBar: {
+    marginHorizontal: 16,
+    marginVertical: 8,
     elevation: 0,
+    backgroundColor: '#fff',
     borderRadius: 8,
   },
   subjectsContainer: {
@@ -386,17 +414,17 @@ const styles = StyleSheet.create({
   sectionTitle: {
     marginHorizontal: 16,
     marginBottom: 12,
-    fontWeight: 'bold',
+    fontSize: 18,
   },
   gamesScrollContent: {
     paddingHorizontal: 16,
-    gap: 16,
+    paddingVertical: 8,
   },
   gameCard: {
-    width: (Dimensions.get('window').width - 32 - 16) / 2, // Screen width - horizontal padding - gap between cards, divided by 2
+    marginRight: 8,
   },
   divider: {
-    marginVertical: 8,
+    marginVertical: 16,
   },
   subjectHeaderContainer: {
     padding: 16,
@@ -406,5 +434,13 @@ const styles = StyleSheet.create({
   },
   subjectSubheaderText: {
     color: '#666',
+  },
+  multiplayerButtonContainer: {
+    padding: 16,
+    alignItems: 'center',
+  },
+  multiplayerButton: {
+    width: '80%',
+    paddingVertical: 8,
   },
 });

@@ -15,44 +15,31 @@ export function GameTile({ game, onPress }: GameTileProps) {
 
   return (
     <Card style={styles.card} onPress={onPress}>
-      <Card.Content>
+      <Card.Content style={styles.content}>
         <View style={styles.header}>
           <MaterialCommunityIcons
             name={subject?.icon || 'gamepad-variant'}
-            size={24}
+            size={32}
             color={subject?.color}
           />
-          {game.isNew && (
-            <Chip compact mode="flat" style={[styles.chip, { backgroundColor: '#FFD700' }]}>
-              New
+          {game.progress === 0 && (
+            <Chip compact mode="flat" style={styles.newChip}>
+              <Text style={styles.newChipText}>NEW</Text>
             </Chip>
           )}
         </View>
         
-        <Text variant="titleMedium" style={styles.title}>
-          {game.title}
-        </Text>
-        
-        <Text variant="bodySmall" style={styles.topic}>
-          {game.topic}
-        </Text>
-
-        <View style={styles.progressContainer}>
-          <ProgressBar
-            progress={game.progress}
-            color={subject?.color}
-            style={styles.progressBar}
-          />
-          <Text variant="labelSmall" style={styles.progressText}>
-            {Math.round(game.progress * 100)}%
+        <View style={styles.topicContainer}>
+          <Text variant="bodyMedium" style={styles.topic} numberOfLines={2}>
+            {game.topic}
           </Text>
         </View>
 
-        {game.badge && (
-          <Chip compact mode="outlined" style={styles.badge}>
-            {game.badge}
-          </Chip>
-        )}
+        <ProgressBar
+          progress={game.progress}
+          color={subject?.color}
+          style={styles.progressBar}
+        />
       </Card.Content>
     </Card>
   );
@@ -60,47 +47,43 @@ export function GameTile({ game, onPress }: GameTileProps) {
 
 const styles = StyleSheet.create({
   card: {
-    margin: 4,
+    width: 160,
+    height: 160,
+    marginRight: 12,
+    marginVertical: 8,
+    backgroundColor: '#fff',
+    elevation: 4,
+  },
+  content: {
+    padding: 12,
     flex: 1,
+    justifyContent: 'space-between',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
   },
-  title: {
-    marginBottom: 4,
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '500',
+  topicContainer: {
+    height: 48,
+    justifyContent: 'center',
   },
   topic: {
-    opacity: 0.7,
-    marginBottom: 8,
-    fontSize: 13,
-    lineHeight: 16,
+    fontWeight: '500',
+    color: '#333',
+    textAlign: 'left',
   },
-  progressContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    marginBottom: 8,
+  newChip: {
+    backgroundColor: '#FFD700',
+    height: 28,
+  },
+  newChipText: {
+    color: '#000',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
   progressBar: {
-    flex: 1,
-    height: 3,
-  },
-  progressText: {
-    opacity: 0.7,
-    fontSize: 11,
-  },
-  chip: {
-    height: 20,
-    marginLeft: 4,
-  },
-  badge: {
-    alignSelf: 'flex-start',
-    height: 20,
+    height: 6,
+    borderRadius: 3,
   },
 });

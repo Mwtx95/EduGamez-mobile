@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Platform } from 'react-native';
 import { TextInput, Button, HelperText, Menu, TouchableRipple, Text } from 'react-native-paper';
-import { DatePickerModal } from 'react-native-paper-dates';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -38,7 +38,23 @@ export const UserRegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit
   });
   const [errors, setErrors] = useState<Partial<UserRegistration>>({});
   const [menuVisible, setMenuVisible] = useState(false);
-  const [datePickerVisible, setDatePickerVisible] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  // Calculate age restrictions dynamically
+  const getDateRestrictions = () => {
+    const maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() - 8); // Minimum age of 8
+    const minDate = new Date();
+    minDate.setFullYear(minDate.getFullYear() - 20); // Maximum age of 20
+    return { maxDate, minDate };
+  };
+
+  const onDateChange = (event: any, selectedDate?: Date) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      setUserData({ ...userData, dateOfBirth: selectedDate });
+    }
+  };
 
   const validate = () => {
     const newErrors: Partial<UserRegistration> = {};
@@ -86,7 +102,7 @@ export const UserRegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit
         error={!!errors.username}
         maxLength={8}
         placeholderTextColor="#999"
-        placeholder="Umili203"
+        placeholder="E.g., Umili203"
       />
       <HelperText type="error" visible={!!errors.username}>
         {errors.username}
@@ -100,8 +116,6 @@ export const UserRegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit
         style={styles.input}
         error={!!errors.password}
         secureTextEntry
-        placeholderTextColor="#999"
-        placeholder="seif95@me"
       />
       <HelperText type="error" visible={!!errors.password}>
         {errors.password}
@@ -120,11 +134,11 @@ export const UserRegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit
         {errors.confirmPassword}
       </HelperText>
 
-      <TouchableRipple onPress={() => setDatePickerVisible(true)}>
+      <TouchableRipple onPress={() => setShowDatePicker(true)}>
         <View pointerEvents="none">
           <TextInput
             label="Date of Birth"
-            value={userData.dateOfBirth ? userData.dateOfBirth.toDateString() : ''}
+            value={userData.dateOfBirth ? userData.dateOfBirth.toLocaleDateString() : ''}
             mode="outlined"
             style={styles.input}
             error={!!errors.dateOfBirth}
@@ -139,17 +153,17 @@ export const UserRegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit
         {errors.dateOfBirth?.toString()}
       </HelperText>
 
-      <DatePickerModal
-        mode="single"
-        visible={datePickerVisible}
-        onDismiss={() => setDatePickerVisible(false)}
-        date={userData.dateOfBirth || undefined}
-        onConfirm={(date) => {
-          setUserData({ ...userData, dateOfBirth: date.date || null });
-          setDatePickerVisible(false);
-        }}
-        locale="en" // Add the required locale property
-      />
+      {showDatePicker && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={userData.dateOfBirth || getDateRestrictions().maxDate}
+          mode="date"
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          onChange={onDateChange}
+          maximumDate={getDateRestrictions().maxDate}
+          minimumDate={getDateRestrictions().minDate}
+        />
+      )}
 
       <Menu
         visible={menuVisible}
