@@ -281,7 +281,7 @@ export default function HomeScreen() {
       <Text variant="titleMedium" style={styles.sectionTitle}>
         {title}
       </Text>
-      <ScrollView 
+      <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.gamesScrollContent}
@@ -336,18 +336,18 @@ export default function HomeScreen() {
             Select a topic to play
           </Text>
           <Searchbar
-            placeholder="Search games..."
+            placeholder="Search a topic..."
             onChangeText={setSearchQuery}
             value={searchQuery}
             style={styles.searchBar}
           />
-          <ScrollView 
+          <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.gamesScrollContent}
           >
             {singlePlayerGames
-              .filter(game => 
+              .filter(game =>
                 game.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 game.topic.toLowerCase().includes(searchQuery.toLowerCase())
               )
@@ -442,5 +442,6 @@ const styles = StyleSheet.create({
   multiplayerButton: {
     width: '80%',
     paddingVertical: 8,
+    borderRadius: 4,
   },
 });

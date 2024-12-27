@@ -13,6 +13,13 @@ interface GameTileProps {
 export function GameTile({ game, onPress }: GameTileProps) {
   const subject = subjects.find(s => s.id === game.subject);
 
+  const getLevel = (progress: number) => {
+    if (progress === 0) return 0;
+    return Math.min(5, Math.ceil(progress * 5));
+  };
+
+  const level = getLevel(game.progress);
+
   return (
     <Card style={styles.card} onPress={onPress}>
       <Card.Content style={styles.content}>
@@ -22,24 +29,35 @@ export function GameTile({ game, onPress }: GameTileProps) {
             size={32}
             color={subject?.color}
           />
-          {game.progress === 0 && (
-            <Chip compact mode="flat" style={styles.newChip}>
-              <Text style={styles.newChipText}>NEW</Text>
-            </Chip>
-          )}
+          <View style={styles.levelContainer}>
+            {level === 0 ? (
+              <Chip compact mode="flat" style={styles.newChip}>
+                <Text style={styles.newChipText}>NEW</Text>
+              </Chip>
+            ) : (
+              <Chip compact mode="flat" style={[styles.levelChip, { backgroundColor: subject?.color + '20' }]}>
+                <Text style={[styles.levelText, { color: subject?.color }]}>LVL {level}</Text>
+              </Chip>
+            )}
+          </View>
         </View>
-        
+
         <View style={styles.topicContainer}>
           <Text variant="bodyMedium" style={styles.topic} numberOfLines={2}>
             {game.topic}
           </Text>
         </View>
 
-        <ProgressBar
-          progress={game.progress}
-          color={subject?.color}
-          style={styles.progressBar}
-        />
+        <View style={styles.progressContainer}>
+          <Text variant="bodySmall" style={styles.progressText}>
+            {Math.round(game.progress * 100)}%
+          </Text>
+          <ProgressBar
+            progress={game.progress}
+            color={subject?.color}
+            style={styles.progressBar}
+          />
+        </View>
       </Card.Content>
     </Card>
   );
@@ -85,5 +103,24 @@ const styles = StyleSheet.create({
   progressBar: {
     height: 6,
     borderRadius: 3,
+  },
+  progressContainer: {
+    gap: 4,
+  },
+  progressText: {
+    textAlign: 'right',
+    color: '#666',
+    fontSize: 12,
+  },
+  levelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  levelChip: {
+    height: 28,
+  },
+  levelText: {
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });

@@ -26,6 +26,7 @@ export default function TabLayout() {
             borderTopWidth: 0.5,
             // tabs recent changes
             height: 95,
+            paddingTop: 7,
             paddingBottom: 25,
           },
           headerRight: renderHeaderRight,
@@ -87,6 +88,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 5,
     zIndex: 1000,
+    borderTopWidth: 0.5,
+    borderTopColor: '#e0e0e0',
+    paddingTop: 12,
   },
   poweredByText: {
     fontSize: 10,
