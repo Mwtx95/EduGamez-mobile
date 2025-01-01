@@ -14,6 +14,14 @@ export interface Game {
   topic: string;
   questions: Question[];
   isLocked: boolean;
+  status?: "not_started" | "in_progress" | "completed";
+  progress?: number;
+  lastPlayed?: string;
+  badge?: string;
+  isNew?: boolean;
+  isComprehensive?: boolean;
+  mode?: "singleplayer" | "multiplayer";
+  gameType?: string;
 }
 
 export interface GameProgress {

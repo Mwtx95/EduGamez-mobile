@@ -1,6 +1,6 @@
-import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
-import { Avatar as PaperAvatar } from 'react-native-paper';
+import React from "react";
+import { Image, StyleSheet, View } from "react-native";
+import { Avatar as PaperAvatar } from "react-native-paper";
 
 interface AvatarProps {
   source?: string | number; // Can be either a local require() or a URL
@@ -8,13 +8,13 @@ interface AvatarProps {
   style?: any;
 }
 
-export const Avatar: React.FC<AvatarProps> = ({ 
-  source = require('../../assets/images/seif.jpg'),
+export default function ({
+  source = require("../../assets/images/seif.jpg"),
   size = 40,
-  style 
-}) => {
+  style,
+}: AvatarProps) {
   // If source is a string (URL), use it directly, otherwise use the local image
-  const imageSource = typeof source === 'string' ? { uri: source } : source;
+  const imageSource = typeof source === "string" ? { uri: source } : source;
 
   return (
     <View style={[styles.container, style]}>
@@ -25,14 +25,14 @@ export const Avatar: React.FC<AvatarProps> = ({
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   avatar: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
 });

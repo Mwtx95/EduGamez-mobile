@@ -1,9 +1,9 @@
-import React from 'react';
-import { Tabs } from 'expo-router';
-import { useTheme } from 'react-native-paper';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Avatar } from '../components';
-import { View, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { Tabs } from "expo-router";
+import { useTheme } from "react-native-paper";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { View, Text, StyleSheet } from "react-native";
+import Avatar from "../components/Avatar";
 
 const renderHeaderRight = () => (
   <Avatar size={40} style={{ marginRight: 10 }} />
@@ -35,7 +35,7 @@ export default function TabLayout() {
         <Tabs.Screen
           name="home"
           options={{
-            title: 'Home',
+            title: "Home",
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" size={size} color={color} />
             ),
@@ -44,16 +44,20 @@ export default function TabLayout() {
         <Tabs.Screen
           name="review"
           options={{
-            title: 'Review',
+            title: "Review",
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="check-circle" size={size} color={color} />
+              <MaterialCommunityIcons
+                name="check-circle"
+                size={size}
+                color={color}
+              />
             ),
           }}
         />
         <Tabs.Screen
           name="leaderboard"
           options={{
-            title: 'Leaderboard',
+            title: "Leaderboard",
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="trophy" size={size} color={color} />
             ),
@@ -62,9 +66,13 @@ export default function TabLayout() {
         <Tabs.Screen
           name="profile"
           options={{
-            title: 'Profile',
+            title: "Profile",
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="account" size={size} color={color} />
+              <MaterialCommunityIcons
+                name="account"
+                size={size}
+                color={color}
+              />
             ),
             headerRight: undefined,
           }}
@@ -80,21 +88,21 @@ export default function TabLayout() {
 // powered by style:
 const styles = StyleSheet.create({
   poweredByContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'transparent',
-    alignItems: 'center',
+    backgroundColor: "transparent",
+    alignItems: "center",
     paddingBottom: 5,
     zIndex: 1000,
     borderTopWidth: 0.5,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: "#e0e0e0",
     paddingTop: 12,
   },
   poweredByText: {
     fontSize: 10,
-    color: '#666',
-    textAlign: 'center',
+    color: "#666",
+    textAlign: "center",
   },
 });

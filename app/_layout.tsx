@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
-import { PaperProvider } from 'react-native-paper';
-import { theme } from './theme';
+import { PaperProvider } from "react-native-paper";
+import { theme } from "./theme";
 
 export default function RootLayout() {
   return (
@@ -13,13 +13,13 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen
-          name="(tabs)"
+          name="registration"
           options={{
             headerShown: false,
           }}
         />
         <Stack.Screen
-          name="registration"
+          name="(tabs)"
           options={{
             headerShown: false,
           }}
