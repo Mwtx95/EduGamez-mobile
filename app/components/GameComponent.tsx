@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Question } from "../types";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 interface GameComponentProps {
   questionsCount?: number;
@@ -25,13 +26,13 @@ export default function GameComponent({
   const [showExplanation, setShowExplanation] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [gameCompleted, setGameCompleted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     startNewGame();
   }, [questionsCount, providedQuestions]);
 
   const startNewGame = () => {
-    // Randomly select questions if more are provided than needed
     const shuffled = [...providedQuestions].sort(() => 0.5 - Math.random());
     const selectedQuestions = shuffled.slice(
       0,
@@ -43,14 +44,22 @@ export default function GameComponent({
     setShowExplanation(false);
     setSelectedAnswer(null);
     setGameCompleted(false);
+    setIsSubmitted(false);
   };
 
   const handleAnswer = (answer: string) => {
-    setSelectedAnswer(answer);
-    const isCorrect = questions[currentQuestionIndex].correctAnswer === answer;
+    if (!isSubmitted) {
+      setSelectedAnswer(answer);
+    }
+  };
+
+  const handleSubmit = () => {
+    const isCorrect =
+      questions[currentQuestionIndex].correctAnswer === selectedAnswer;
     if (isCorrect) {
       setScore(score + 1);
     }
+    setIsSubmitted(true);
     setShowExplanation(true);
   };
 
@@ -59,6 +68,7 @@ export default function GameComponent({
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setShowExplanation(false);
       setSelectedAnswer(null);
+      setIsSubmitted(false);
     } else {
       setGameCompleted(true);
       onGameComplete?.(score, questions.length);
@@ -108,30 +118,56 @@ export default function GameComponent({
               style={[
                 styles.optionButton,
                 selectedAnswer === option && styles.selectedOption,
-                showExplanation &&
+                isSubmitted &&
                   option === currentQuestion.correctAnswer &&
                   styles.correctOption,
-                showExplanation &&
+                isSubmitted &&
                   selectedAnswer === option &&
                   option !== currentQuestion.correctAnswer &&
                   styles.wrongOption,
               ]}
-              onPress={() => !showExplanation && handleAnswer(option)}
-              disabled={showExplanation}
+              onPress={() => !isSubmitted && handleAnswer(option)}
+              disabled={isSubmitted}
             >
-              <Text
-                style={[
-                  styles.optionText,
-                  showExplanation &&
-                    option === currentQuestion.correctAnswer &&
-                    styles.correctOptionText,
-                ]}
-              >
-                {option}
-              </Text>
+              <View style={styles.optionContent}>
+                <Text
+                  style={[
+                    styles.optionText,
+                    isSubmitted &&
+                      option === currentQuestion.correctAnswer &&
+                      styles.correctOptionText,
+                  ]}
+                >
+                  {option}
+                </Text>
+                {isSubmitted &&
+                  selectedAnswer === option &&
+                  option !== currentQuestion.correctAnswer && (
+                    <MaterialCommunityIcons
+                      name="close"
+                      size={24}
+                      color="#ff6b6b"
+                      style={styles.wrongIcon}
+                    />
+                  )}
+                {isSubmitted && option === currentQuestion.correctAnswer && (
+                  <MaterialCommunityIcons
+                    name="check"
+                    size={24}
+                    color="#2d862f"
+                    style={styles.correctIcon}
+                  />
+                )}
+              </View>
             </TouchableOpacity>
           ))}
         </View>
+
+        {selectedAnswer && !isSubmitted && (
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+            <Text style={styles.buttonText}>Submit Answer</Text>
+          </TouchableOpacity>
+        )}
 
         {showExplanation && (
           <View style={styles.explanationContainer}>
@@ -219,11 +255,22 @@ const styles = StyleSheet.create({
   optionText: {
     fontSize: 16,
     color: "#444",
-    textAlign: "center",
   },
   correctOptionText: {
     color: "#2d862f",
     fontWeight: "600",
+  },
+  optionContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 8,
+  },
+  wrongIcon: {
+    marginLeft: 8,
+  },
+  correctIcon: {
+    marginLeft: 8,
   },
   explanationContainer: {
     marginTop: 24,
@@ -293,6 +340,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 8,
     width: "100%",
+  },
+  submitButton: {
+    backgroundColor: "#007AFF",
+    padding: 16,
+    borderRadius: 8,
+    alignItems: "center",
+    marginTop: 16,
+    marginBottom: 8,
   },
   buttonText: {
     color: "white",
