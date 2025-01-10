@@ -16,6 +16,29 @@ export interface Topic {
 
 export const subjects: Subject[] = [
   {
+    id: "english",
+    name: "English",
+    icon: "book-alphabet",
+    color: "#e74c3c", // Red
+    topics: [
+      {
+        id: "grammar-beginner",
+        name: "Grammar (Beginner)",
+        description: "Basic English grammar concepts",
+      },
+      {
+        id: "grammar-intermediate",
+        name: "Grammar (Intermediate)",
+        description: "Advanced grammar structures",
+      },
+      {
+        id: "grammar-advanced",
+        name: "Grammar (Advanced)",
+        description: "Complex grammar and usage",
+      },
+    ],
+  },
+  {
     id: "math",
     name: "Mathematics",
     icon: "calculator",
@@ -77,29 +100,6 @@ export const subjects: Subject[] = [
         id: "local-history",
         name: "Local History",
         description: "Explore your heritage",
-      },
-    ],
-  },
-  {
-    id: "english",
-    name: "English",
-    icon: "book-alphabet",
-    color: "#e74c3c", // Red
-    topics: [
-      {
-        id: "grammar-beginner",
-        name: "Grammar (Beginner)",
-        description: "Basic English grammar concepts",
-      },
-      {
-        id: "grammar-intermediate",
-        name: "Grammar (Intermediate)",
-        description: "Advanced grammar structures",
-      },
-      {
-        id: "grammar-advanced",
-        name: "Grammar (Advanced)",
-        description: "Complex grammar and usage",
       },
     ],
   },

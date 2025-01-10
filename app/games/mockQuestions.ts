@@ -1,7 +1,7 @@
-import { Question } from "../types";
+import type { Question } from "../types/index";
 
-// Algebra Questions
-export const algebraQuestions: Question[] = [
+// Explicitly annotate the arrays
+export const algebraQuestions: Array<Question> = [
   {
     id: "alg1",
     text: "Solve for x: 2x + 5 = 13",
@@ -82,7 +82,7 @@ export const algebraQuestions: Question[] = [
 ];
 
 // Trigonometry Questions
-export const trigonometryQuestions: Question[] = [
+export const trigonometryQuestions: Array<Question> = [
   {
     id: "trig1",
     text: "What is sin(90°)?",
@@ -157,7 +157,7 @@ export const trigonometryQuestions: Question[] = [
 ];
 
 // Linear Programming Questions
-export const linearProgrammingQuestions: Question[] = [
+export const linearProgrammingQuestions: Array<Question> = [
   {
     id: "lp1",
     text: "What is the objective function in linear programming?",
@@ -286,7 +286,7 @@ export const linearProgrammingQuestions: Question[] = [
 ];
 
 // Statistics Questions
-export const statisticsQuestions: Question[] = [
+export const statisticsQuestions: Array<Question> = [
   {
     id: "stat1",
     text: "What is the mean of the numbers: 2, 4, 6, 8, 10?",
@@ -362,7 +362,7 @@ export const statisticsQuestions: Question[] = [
 ];
 
 // English Grammar Questions - Beginner
-export const grammarBeginnerQuestions: Question[] = [
+export const grammarBeginnerQuestions: Array<Question> = [
   {
     id: "gram_beg1",
     text: "Choose the correct form of the verb: She ___ to school every day.",
@@ -394,7 +394,7 @@ export const grammarBeginnerQuestions: Question[] = [
 ];
 
 // English Grammar Questions - Intermediate
-export const grammarIntermediateQuestions: Question[] = [
+export const grammarIntermediateQuestions: Array<Question> = [
   {
     id: "gram_int1",
     text: "Choose the correct conditional form: If I ___ rich, I would buy a house.",
@@ -427,7 +427,7 @@ export const grammarIntermediateQuestions: Question[] = [
 ];
 
 // English Grammar Questions - Advanced
-export const grammarAdvancedQuestions: Question[] = [
+export const grammarAdvancedQuestions: Array<Question> = [
   {
     id: "gram_adv1",
     text: "Choose the correct subjunctive form: It is essential that he ___ the documents by tomorrow.",
