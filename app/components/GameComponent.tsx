@@ -6,7 +6,7 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import { Question } from "../types";
+import type { Question } from "../types/index";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 interface GameComponentProps {
