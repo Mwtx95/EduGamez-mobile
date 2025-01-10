@@ -60,7 +60,7 @@ export default function GameComponent({
       setScore(score + 1);
     }
     setIsSubmitted(true);
-    setShowExplanation(true);
+    setShowExplanation(!isCorrect);
   };
 
   const nextQuestion = () => {
@@ -183,6 +183,16 @@ export default function GameComponent({
               </Text>
             </TouchableOpacity>
           </View>
+        )}
+
+        {isSubmitted && !showExplanation && (
+          <TouchableOpacity style={styles.button} onPress={nextQuestion}>
+            <Text style={styles.buttonText}>
+              {currentQuestionIndex < questions.length - 1
+                ? "Next Question"
+                : "Finish Game"}
+            </Text>
+          </TouchableOpacity>
         )}
       </View>
     </ScrollView>
