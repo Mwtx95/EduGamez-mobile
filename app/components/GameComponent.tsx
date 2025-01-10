@@ -109,7 +109,7 @@ export default function GameComponent({
       </View>
 
       <View style={styles.questionContainer}>
-        <Text style={styles.questionText}>{currentQuestion.question}</Text>
+        <Text style={styles.questionText}>{currentQuestion.text}</Text>
 
         <View style={styles.optionsContainer}>
           {currentQuestion.options.map((option, index) => (

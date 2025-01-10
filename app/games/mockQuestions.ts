@@ -4,14 +4,14 @@ import { Question } from "../types";
 export const algebraQuestions: Question[] = [
   {
     id: "alg1",
-    question: "Solve for x: 2x + 5 = 13",
+    text: "Solve for x: 2x + 5 = 13",
     options: ["x = 4", "x = 6", "x = 8", "x = 3"],
     correctAnswer: "x = 4",
     explanation: "Subtract 5 from both sides: 2x = 8, then divide by 2: x = 4",
   },
   {
     id: "alg2",
-    question: "Which expression is equivalent to (x + 3)(x - 2)?",
+    text: "Which expression is equivalent to (x + 3)(x - 2)?",
     options: ["x² + x - 6", "x² + 5x - 6", "x² - 5x + 6", "x² + x + 6"],
     correctAnswer: "x² + x - 6",
     explanation:
@@ -19,7 +19,7 @@ export const algebraQuestions: Question[] = [
   },
   {
     id: "alg3",
-    question: "What is the slope of the line y = 3x - 4?",
+    text: "What is the slope of the line y = 3x - 4?",
     options: ["3", "-4", "4", "-3"],
     correctAnswer: "3",
     explanation:
@@ -27,21 +27,21 @@ export const algebraQuestions: Question[] = [
   },
   {
     id: "alg4",
-    question: "Simplify: 2(x + 3) - 3(x - 1)",
+    text: "Simplify: 2(x + 3) - 3(x - 1)",
     options: ["−x + 9", "−x + 3", "−x + 5", "x + 5"],
     correctAnswer: "−x + 9",
     explanation: "2x + 6 - 3x + 3 = -x + 9",
   },
   {
     id: "alg5",
-    question: "Factor: x² - 9",
+    text: "Factor: x² - 9",
     options: ["(x+3)(x-3)", "(x-3)(x-3)", "(x+3)(x+3)", "(x-9)(x+1)"],
     correctAnswer: "(x+3)(x-3)",
     explanation: "This is a difference of squares: a² - b² = (a+b)(a-b)",
   },
   {
     id: "alg6",
-    question: "Solve: |x - 2| = 5",
+    text: "Solve: |x - 2| = 5",
     options: [
       "x = 7 or x = -3",
       "x = 3 or x = 7",
@@ -53,28 +53,28 @@ export const algebraQuestions: Question[] = [
   },
   {
     id: "alg7",
-    question: "What is the y-intercept of 2x + y = 6?",
+    text: "What is the y-intercept of 2x + y = 6?",
     options: ["6", "3", "2", "-6"],
     correctAnswer: "6",
     explanation: "When x = 0, y = 6",
   },
   {
     id: "alg8",
-    question: "Solve: 3x + 4 > 16",
+    text: "Solve: 3x + 4 > 16",
     options: ["x > 4", "x > 6", "x < 4", "x < 6"],
     correctAnswer: "x > 4",
     explanation: "Subtract 4: 3x > 12, then divide by 3: x > 4",
   },
   {
     id: "alg9",
-    question: "What is the domain of f(x) = x²?",
+    text: "What is the domain of f(x) = x²?",
     options: ["All real numbers", "x ≥ 0", "x ≤ 0", "x ≠ 0"],
     correctAnswer: "All real numbers",
     explanation: "A quadratic function can take any real number as input",
   },
   {
     id: "alg10",
-    question: "Simplify: (x³y²)(xy³)",
+    text: "Simplify: (x³y²)(xy³)",
     options: ["x⁴y⁵", "x³y⁶", "x⁴y⁶", "x⁵y⁵"],
     correctAnswer: "x⁴y⁵",
     explanation: "Add exponents: x³⁺¹y²⁺³ = x⁴y⁵",
@@ -85,28 +85,28 @@ export const algebraQuestions: Question[] = [
 export const trigonometryQuestions: Question[] = [
   {
     id: "trig1",
-    question: "What is sin(90°)?",
+    text: "What is sin(90°)?",
     options: ["0", "1", "-1", "undefined"],
     correctAnswer: "1",
     explanation: "sin(90°) = 1 is a fundamental trigonometric value",
   },
   {
     id: "trig2",
-    question: "What is the period of cos(x)?",
+    text: "What is the period of cos(x)?",
     options: ["2π", "π", "π/2", "4π"],
     correctAnswer: "2π",
     explanation: "The cosine function repeats every 2π radians",
   },
   {
     id: "trig3",
-    question: "In a right triangle, if sin(θ) = 0.6, what is cos(θ)?",
+    text: "In a right triangle, if sin(θ) = 0.6, what is cos(θ)?",
     options: ["0.8", "0.6", "0.5", "0.4"],
     correctAnswer: "0.8",
     explanation: "Using the Pythagorean identity sin²(θ) + cos²(θ) = 1",
   },
   {
     id: "trig4",
-    question: "What is tan(45°)?",
+    text: "What is tan(45°)?",
     options: ["1", "0", "undefined", "√2"],
     correctAnswer: "1",
     explanation:
@@ -114,42 +114,42 @@ export const trigonometryQuestions: Question[] = [
   },
   {
     id: "trig5",
-    question: "What is the range of sin(x)?",
+    text: "What is the range of sin(x)?",
     options: ["[-1, 1]", "[0, 1]", "[-1, 0]", "All real numbers"],
     correctAnswer: "[-1, 1]",
     explanation: "The sine function oscillates between -1 and 1",
   },
   {
     id: "trig6",
-    question: "What is cos(0°)?",
+    text: "What is cos(0°)?",
     options: ["1", "0", "-1", "undefined"],
     correctAnswer: "1",
     explanation: "cos(0°) = 1 is a fundamental trigonometric value",
   },
   {
     id: "trig7",
-    question: "If sin(x) = cos(x), what is x?",
+    text: "If sin(x) = cos(x), what is x?",
     options: ["45°", "30°", "60°", "90°"],
     correctAnswer: "45°",
     explanation: "When sin(x) = cos(x), x = 45° (or π/4 radians)",
   },
   {
     id: "trig8",
-    question: "What is sin²(x) + cos²(x)?",
+    text: "What is sin²(x) + cos²(x)?",
     options: ["1", "0", "2", "depends on x"],
     correctAnswer: "1",
     explanation: "This is the fundamental Pythagorean identity",
   },
   {
     id: "trig9",
-    question: "What is the period of tan(x)?",
+    text: "What is the period of tan(x)?",
     options: ["π", "2π", "π/2", "3π"],
     correctAnswer: "π",
     explanation: "The tangent function repeats every π radians",
   },
   {
     id: "trig10",
-    question: "What is sin(30°)?",
+    text: "What is sin(30°)?",
     options: ["1/2", "√3/2", "√2/2", "1"],
     correctAnswer: "1/2",
     explanation: "sin(30°) = 1/2 is a standard angle value",
@@ -160,7 +160,7 @@ export const trigonometryQuestions: Question[] = [
 export const linearProgrammingQuestions: Question[] = [
   {
     id: "lp1",
-    question: "What is the objective function in linear programming?",
+    text: "What is the objective function in linear programming?",
     options: [
       "Function to be maximized or minimized",
       "Function that defines constraints",
@@ -173,8 +173,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp2",
-    question:
-      "Which method is used to solve linear programming problems graphically?",
+    text: "Which method is used to solve linear programming problems graphically?",
     options: [
       "Corner Point Method",
       "Midpoint Method",
@@ -187,7 +186,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp3",
-    question: "What is a feasible region?",
+    text: "What is a feasible region?",
     options: [
       "Area satisfying all constraints",
       "Area outside constraints",
@@ -200,7 +199,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp4",
-    question: "What type of lines form the boundaries of constraints?",
+    text: "What type of lines form the boundaries of constraints?",
     options: ["Straight lines", "Curved lines", "Circles", "Parabolas"],
     correctAnswer: "Straight lines",
     explanation:
@@ -208,7 +207,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp5",
-    question: "What does an unbounded solution mean?",
+    text: "What does an unbounded solution mean?",
     options: [
       "The solution can be infinitely large",
       "No solution exists",
@@ -221,7 +220,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp6",
-    question: "What is a slack variable?",
+    text: "What is a slack variable?",
     options: [
       "Variable added to convert inequality to equation",
       "Variable that must be removed",
@@ -234,7 +233,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp7",
-    question: "What indicates an infeasible solution?",
+    text: "What indicates an infeasible solution?",
     options: [
       "No point satisfies all constraints",
       "Too many points satisfy constraints",
@@ -247,8 +246,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp8",
-    question:
-      "In the simplex method, what represents a basic feasible solution?",
+    text: "In the simplex method, what represents a basic feasible solution?",
     options: [
       "Corner point of feasible region",
       "Center of feasible region",
@@ -261,7 +259,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp9",
-    question: "What is the standard form of a linear programming problem?",
+    text: "What is the standard form of a linear programming problem?",
     options: [
       "Maximize Z subject to ≤ constraints",
       "Minimize Z subject to ≥ constraints",
@@ -274,7 +272,7 @@ export const linearProgrammingQuestions: Question[] = [
   },
   {
     id: "lp10",
-    question: "What is the purpose of sensitivity analysis?",
+    text: "What is the purpose of sensitivity analysis?",
     options: [
       "Study effect of parameter changes",
       "Find initial solution",
@@ -291,36 +289,35 @@ export const linearProgrammingQuestions: Question[] = [
 export const statisticsQuestions: Question[] = [
   {
     id: "stat1",
-    question: "What is the mean of the numbers: 2, 4, 6, 8, 10?",
+    text: "What is the mean of the numbers: 2, 4, 6, 8, 10?",
     options: ["6", "5", "7", "8"],
     correctAnswer: "6",
     explanation: "Sum (30) divided by count (5) equals 6",
   },
   {
     id: "stat2",
-    question: "What is the median of: 1, 3, 3, 6, 7, 8, 9?",
+    text: "What is the median of: 1, 3, 3, 6, 7, 8, 9?",
     options: ["6", "5", "7", "3"],
     correctAnswer: "6",
     explanation: "The middle number in the ordered list is 6",
   },
   {
     id: "stat3",
-    question: "What is the mode of: 2, 2, 3, 4, 4, 4, 5?",
+    text: "What is the mode of: 2, 2, 3, 4, 4, 4, 5?",
     options: ["4", "2", "3", "5"],
     correctAnswer: "4",
     explanation: "4 appears most frequently (three times)",
   },
   {
     id: "stat4",
-    question: "What is the range of: 10, 15, 20, 25, 30?",
+    text: "What is the range of: 10, 15, 20, 25, 30?",
     options: ["20", "15", "25", "30"],
     correctAnswer: "20",
     explanation: "Largest value (30) minus smallest value (10) equals 20",
   },
   {
     id: "stat5",
-    question:
-      "What type of correlation shows one variable increasing as another decreases?",
+    text: "What type of correlation shows one variable increasing as another decreases?",
     options: ["Negative", "Positive", "Zero", "Perfect"],
     correctAnswer: "Negative",
     explanation:
@@ -328,14 +325,14 @@ export const statisticsQuestions: Question[] = [
   },
   {
     id: "stat6",
-    question: "What is the probability of rolling a 6 on a fair die?",
+    text: "What is the probability of rolling a 6 on a fair die?",
     options: ["1/6", "1/3", "1/2", "1/4"],
     correctAnswer: "1/6",
     explanation: "One favorable outcome out of six possible outcomes",
   },
   {
     id: "stat7",
-    question: "What measure of spread is most affected by outliers?",
+    text: "What measure of spread is most affected by outliers?",
     options: ["Standard deviation", "Range", "IQR", "Median"],
     correctAnswer: "Range",
     explanation:
@@ -343,24 +340,121 @@ export const statisticsQuestions: Question[] = [
   },
   {
     id: "stat8",
-    question:
-      "In a normal distribution, what percentage falls within one standard deviation?",
+    text: "In a normal distribution, what percentage falls within one standard deviation?",
     options: ["68%", "95%", "99%", "50%"],
     correctAnswer: "68%",
     explanation: "Approximately 68% of data falls within ±1 standard deviation",
   },
   {
     id: "stat9",
-    question: "What is the sum of probabilities of all possible outcomes?",
+    text: "What is the sum of probabilities of all possible outcomes?",
     options: ["1", "0", "100", "Infinity"],
     correctAnswer: "1",
     explanation: "Total probability must equal 1 (or 100%)",
   },
   {
     id: "stat10",
-    question: "What is the variance a measure of?",
+    text: "What is the variance a measure of?",
     options: ["Spread", "Center", "Shape", "Position"],
     correctAnswer: "Spread",
     explanation: "Variance measures how far numbers are from their mean",
+  },
+];
+
+// English Grammar Questions - Beginner
+export const grammarBeginnerQuestions: Question[] = [
+  {
+    id: "gram_beg1",
+    text: "Choose the correct form of the verb: She ___ to school every day.",
+    options: ["go", "goes", "going", "went"],
+    correctAnswer: "goes",
+    explanation:
+      "With third-person singular (he/she/it), we add -s to the base form of the verb.",
+  },
+  {
+    id: "gram_beg2",
+    text: "Which sentence is correct?",
+    options: [
+      "They is playing football.",
+      "They are playing football.",
+      "They am playing football.",
+      "They be playing football.",
+    ],
+    correctAnswer: "They are playing football.",
+    explanation:
+      "With 'they', we use the plural form 'are' of the verb 'to be'.",
+  },
+  {
+    id: "gram_beg3",
+    text: "Select the correct article: I saw ___ elephant at the zoo.",
+    options: ["a", "an", "the", "no article needed"],
+    correctAnswer: "an",
+    explanation: "We use 'an' before words that begin with vowel sounds.",
+  },
+];
+
+// English Grammar Questions - Intermediate
+export const grammarIntermediateQuestions: Question[] = [
+  {
+    id: "gram_int1",
+    text: "Choose the correct conditional form: If I ___ rich, I would buy a house.",
+    options: ["am", "was", "were", "had been"],
+    correctAnswer: "were",
+    explanation:
+      "In second conditional (hypothetical present/future), we use 'were' for all persons.",
+  },
+  {
+    id: "gram_int2",
+    text: "Select the correct passive voice: The book ___ by John last year.",
+    options: ["wrote", "was written", "had written", "has been written"],
+    correctAnswer: "was written",
+    explanation:
+      "For past simple passive, we use 'was/were + past participle'.",
+  },
+  {
+    id: "gram_int3",
+    text: "Which sentence uses the present perfect correctly?",
+    options: [
+      "I have seen him yesterday.",
+      "I have never seen him before.",
+      "I have seen him tomorrow.",
+      "I have see him now.",
+    ],
+    correctAnswer: "I have never seen him before.",
+    explanation:
+      "Present perfect is used for past actions with a connection to the present, often with words like 'never' and 'before'.",
+  },
+];
+
+// English Grammar Questions - Advanced
+export const grammarAdvancedQuestions: Question[] = [
+  {
+    id: "gram_adv1",
+    text: "Choose the correct subjunctive form: It is essential that he ___ the documents by tomorrow.",
+    options: ["submits", "submit", "submitted", "will submit"],
+    correctAnswer: "submit",
+    explanation:
+      "In subjunctive mood after phrases like 'it is essential that', we use the base form of the verb.",
+  },
+  {
+    id: "gram_adv2",
+    text: "Identify the correct usage of inversion: ___ I realized the magnitude of the problem.",
+    options: ["Only then", "Then only", "Only when", "When only"],
+    correctAnswer: "Only then",
+    explanation:
+      "With 'Only then' at the beginning of a sentence, we use inversion (auxiliary verb before subject).",
+  },
+  {
+    id: "gram_adv3",
+    text: "Select the sentence with correct parallel structure:",
+    options: [
+      "She likes swimming, to dance, and running.",
+      "She likes swimming, dancing, and running.",
+      "She likes to swim, dance, and to run.",
+      "She likes swimming, dance, and to run.",
+    ],
+    correctAnswer: "She likes swimming, dancing, and running.",
+    explanation:
+      "Parallel structure requires using the same grammatical form for all items in a series.",
   },
 ];

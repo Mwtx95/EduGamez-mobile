@@ -17,6 +17,9 @@ import {
   trigonometryQuestions,
   linearProgrammingQuestions,
   statisticsQuestions,
+  grammarBeginnerQuestions,
+  grammarIntermediateQuestions,
+  grammarAdvancedQuestions,
 } from "../games/mockQuestions";
 
 interface GameTileProps {
@@ -49,7 +52,12 @@ export function GameTile({ game, onPress }: GameTileProps) {
     if (topic.includes("trigonometry")) return trigonometryQuestions;
     if (topic.includes("linear")) return linearProgrammingQuestions;
     if (topic.includes("statistics")) return statisticsQuestions;
-    return algebraQuestions; // Default to algebra questions
+    if (topic.includes("grammar")) {
+      if (topic.includes("beginner")) return grammarBeginnerQuestions;
+      if (topic.includes("intermediate")) return grammarIntermediateQuestions;
+      if (topic.includes("advanced")) return grammarAdvancedQuestions;
+    }
+    return algebraQuestions; // Default fallback
   };
 
   const handlePress = () => {

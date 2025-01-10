@@ -1,9 +1,9 @@
 export interface Question {
   id: string;
-  question: string;
+  text: string;
   options: string[];
   correctAnswer: string;
-  explanation?: string;
+  explanation: string;
 }
 
 export interface Game {

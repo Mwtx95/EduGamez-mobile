@@ -258,13 +258,64 @@ const mockGames: Game[] = [
   },
 ];
 
+const englishGrammarGames: Game[] = [
+  {
+    id: "eng_beg",
+    title: "Basic Grammar",
+    subject: "english",
+    educationLevel: "beginner",
+    topic: "grammar-beginner",
+    description: "Learn basic English grammar concepts",
+    questions: [], // Questions will be loaded dynamically
+    isLocked: false,
+    status: "not_started",
+    progress: 0,
+    isNew: true,
+    mode: "singleplayer",
+    gameType: "quiz",
+  },
+  {
+    id: "eng_int",
+    title: "Intermediate Grammar",
+    subject: "english",
+    educationLevel: "intermediate",
+    topic: "grammar-intermediate",
+    description: "Master advanced grammar structures",
+    questions: [], // Questions will be loaded dynamically
+    isLocked: false,
+    status: "not_started",
+    progress: 0,
+    isNew: true,
+    mode: "singleplayer",
+    gameType: "quiz",
+  },
+  {
+    id: "eng_adv",
+    title: "Advanced Grammar",
+    subject: "english",
+    educationLevel: "advanced",
+    topic: "grammar-advanced",
+    description: "Perfect complex grammar and usage",
+    questions: [], // Questions will be loaded dynamically
+    isLocked: false,
+    status: "not_started",
+    progress: 0,
+    isNew: true,
+    mode: "singleplayer",
+    gameType: "quiz",
+  },
+];
+
+// Combine all games
+const allGames = [...mockGames, ...englishGrammarGames];
+
 export default function HomeScreen() {
   const theme = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
 
   const { filteredGames } = useMemo(() => {
-    const filtered = mockGames.filter((game) => {
+    const filtered = allGames.filter((game) => {
       const matchesSearch =
         game.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         game.topic.toLowerCase().includes(searchQuery.toLowerCase());
@@ -304,7 +355,12 @@ export default function HomeScreen() {
           <View key={game.id} style={styles.gameCard}>
             <GameTile
               game={game}
-              onPress={() => router.push(`/game/${game.id}`)}
+              onPress={() =>
+                router.push({
+                  pathname: "/game/[id]",
+                  params: { id: game.id },
+                })
+              }
             />
           </View>
         ))}
@@ -372,7 +428,10 @@ export default function HomeScreen() {
                 <View key={game.id} style={styles.gameCard}>
                   <GameTile
                     game={game}
-                    onPress={() => router.push(`/game/${game.id}`)}
+                    onPress={() => {
+                      // For now, just show an alert since the game route might not be set up
+                      alert(`Starting game: ${game.title}`);
+                    }}
                   />
                 </View>
               ))}
