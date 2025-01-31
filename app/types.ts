@@ -5,13 +5,16 @@ export interface Game {
   topic: string;
   educationLevel: string;
   description: string;
-  questions: Question[];
+  questions: any[];
   isLocked: boolean;
-  status: GameStatus;
-  lastPlayed?: string;
+  status: 'not_started' | 'in_progress' | 'completed';
   progress: number;
+  lastPlayed?: string;
   badge?: string;
   isNew?: boolean;
+  isComprehensive?: boolean;
+  mode: 'singleplayer' | 'multiplayer';
+  gameType?: 'logarithm' | string;
 }
 
 export interface Question {

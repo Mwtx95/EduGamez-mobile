@@ -1,8 +1,8 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
-import { Text, Avatar, List, Button, Divider, useTheme } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
+import React from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
+import { Text, List, Button, Divider, useTheme } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Avatar from "../components/Avatar";
 export default function ProfileScreen() {
   const theme = useTheme();
 
@@ -10,9 +10,13 @@ export default function ProfileScreen() {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.header}>
-          <Avatar.Text size={80} label="JD" />
-          <Text variant="headlineSmall" style={styles.name}>John Doe</Text>
-          <Text variant="bodyMedium" style={styles.level}>Lower Primary</Text>
+          <Avatar size={80} />
+          <Text variant="headlineSmall" style={styles.name}>
+            Seif Mwita
+          </Text>
+          <Text variant="bodyMedium" style={styles.level}>
+            Lower Primary
+          </Text>
         </View>
 
         <View style={styles.statsContainer}>
@@ -26,12 +30,12 @@ export default function ProfileScreen() {
           <List.Item
             title="Mathematics"
             description="8 games completed"
-            left={props => <List.Icon {...props} icon="calculator" />}
+            left={(props) => <List.Icon {...props} icon="calculator" />}
           />
           <List.Item
             title="English"
             description="4 games completed"
-            left={props => <List.Icon {...props} icon="book" />}
+            left={(props) => <List.Icon {...props} icon="book" />}
           />
         </List.Section>
 
@@ -41,15 +45,15 @@ export default function ProfileScreen() {
           <List.Subheader>Settings</List.Subheader>
           <List.Item
             title="Edit Profile"
-            left={props => <List.Icon {...props} icon="account-edit" />}
+            left={(props) => <List.Icon {...props} icon="account-edit" />}
           />
           <List.Item
             title="Notifications"
-            left={props => <List.Icon {...props} icon="bell" />}
+            left={(props) => <List.Icon {...props} icon="bell" />}
           />
           <List.Item
             title="Help & Support"
-            left={props => <List.Icon {...props} icon="help-circle" />}
+            left={(props) => <List.Icon {...props} icon="help-circle" />}
           />
         </List.Section>
 
@@ -71,8 +75,12 @@ export default function ProfileScreen() {
 function StatItem({ title, value }: { title: string; value: string }) {
   return (
     <View style={styles.statItem}>
-      <Text variant="headlineSmall" style={styles.statValue}>{value}</Text>
-      <Text variant="bodySmall" style={styles.statTitle}>{title}</Text>
+      <Text variant="headlineSmall" style={styles.statValue}>
+        {value}
+      </Text>
+      <Text variant="bodySmall" style={styles.statTitle}>
+        {title}
+      </Text>
     </View>
   );
 }
@@ -80,12 +88,12 @@ function StatItem({ title, value }: { title: string; value: string }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5",
   },
   header: {
-    alignItems: 'center',
+    alignItems: "center",
     padding: 24,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   name: {
     marginTop: 12,
@@ -95,17 +103,17 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     marginBottom: 16,
   },
   statItem: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   statValue: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   statTitle: {
     opacity: 0.7,

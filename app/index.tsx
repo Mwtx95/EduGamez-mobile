@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, ScrollView } from 'react-native';
-import { Button, Text, Modal, Portal, Surface } from 'react-native-paper';
+import { Text, TextInput, Button } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { router } from 'expo-router';
-import { GuestRegistrationForm } from './components/GuestRegistrationForm';
+import { Redirect, router } from 'expo-router';
+import { UserRegistrationForm } from './registration';
+import { color } from 'react-native-elements/dist/helpers';
+import { colorsDark } from 'react-native-elements/dist/config';
 
 export default function WelcomeScreen() {
-  const [guestModalVisible, setGuestModalVisible] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState(''); UserRegistrationForm
 
-  const showGuestModal = () => setGuestModalVisible(true);
-  const hideGuestModal = () => setGuestModalVisible(false);
-
-  const handlePremiumFeature = () => {
-    // TODO: Implement premium feature notification
-    alert('This feature is only available in the premium version.');
+  const handleSignIn = () => {
+    // TODO: Implement sign-in logic
+    console.log('Sign in with:', username, password);
   };
+
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,65 +27,51 @@ export default function WelcomeScreen() {
             style={styles.logo}
             resizeMode="contain"
           />
-          {/* <Text variant="headlineLarge" style={styles.title}>
-            EduGamez
-          </Text> */}
-          <Text variant="bodyLarge" style={styles.subtitle}>
-            Learn Through Playing
+          <Text variant="titleLarge" style={styles.subtitle}>
+            Good to see you again!
           </Text>
         </View>
 
-        <View style={styles.buttonContainer}>
-          <Button
-            mode="contained"
-            onPress={handlePremiumFeature}
-            style={styles.button}
-            icon="account-key"
-          >
-            Login
-          </Button>
-
-          <Button
-            mode="contained"
-            onPress={handlePremiumFeature}
-            style={styles.button}
-            icon="account-plus"
-          >
-            Sign Up
-          </Button>
-
-          <Button
+        <View style={styles.formContainer}>
+          <TextInput
+            label="Username"
+            value={username}
+            onChangeText={setUsername}
+            style={styles.input}
             mode="outlined"
-            onPress={showGuestModal}
-            style={styles.button}
-            icon="account"
+          />
+          <TextInput
+            label="Password"
+            value={password}
+            onChangeText={setPassword}
+            style={styles.input}
+            mode="outlined"
+            secureTextEntry
+          />
+          <Button
+            mode="contained"
+            onPress={handleSignIn}
+            style={styles.signInButton}
           >
-            Continue as Guest
+            Sign In
           </Button>
-        </View>
 
-        <Portal>
-          <Modal
-            visible={guestModalVisible}
-            onDismiss={hideGuestModal}
-            contentContainerStyle={styles.modalContainer}
-          >
-            <Surface style={styles.modalContent}>
-              <Text variant="titleLarge" style={styles.modalTitle}>
-                Quick Registration
+          <View style={styles.signupLinkContainer}>
+            <Text variant="bodySmall">
+              Don't have an account?{' '}
+              <Text
+                style={styles.signupLink}
+                onPress={() => router.push('/registration')}
+              >
+                Sign Up
               </Text>
-              <Text variant="bodyMedium" style={styles.modalSubtitle}>
-                Please provide a few details to get started
-              </Text>
-              <GuestRegistrationForm onSubmit={hideGuestModal} />
-              <Button onPress={hideGuestModal} style={styles.cancelButton}>
-                Cancel
-              </Button>
-            </Surface>
-          </Modal>
-        </Portal>
+            </Text>
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
+
+    // <Redirect href="/(tabs)/home" />
   );
 }
 
@@ -106,42 +94,29 @@ const styles = StyleSheet.create({
     height: 150,
     marginBottom: 16,
   },
-  title: {
-    fontWeight: 'bold',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
   subtitle: {
-    color: '#666',
+    color: '#333',
     textAlign: 'center',
+    fontWeight: 'bold',
+    width: '70%',
   },
-  buttonContainer: {
-    gap: 16,
+  formContainer: {
     width: '100%',
     maxWidth: 300,
     alignSelf: 'center',
   },
-  button: {
-    width: '100%',
+  input: {
+    marginBottom: 16,
   },
-  modalContainer: {
-    padding: 16,
-  },
-  modalContent: {
-    padding: 24,
-    borderRadius: 12,
-    elevation: 5,
-  },
-  modalTitle: {
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  modalSubtitle: {
-    textAlign: 'center',
-    marginBottom: 24,
-    color: '#666',
-  },
-  cancelButton: {
+  signInButton: {
     marginTop: 8,
+  },
+  signupLinkContainer: {
+    marginTop: 16,
+    alignItems: 'center',
+  },
+  signupLink: {
+    color: '#007aff',
+    textDecorationLine: 'underline',
   },
 });
