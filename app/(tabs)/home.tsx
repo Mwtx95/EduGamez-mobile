@@ -341,32 +341,31 @@ export default function HomeScreen() {
     (game) => game.mode === "multiplayer"
   );
 
-  const renderGamesSection = (games: Game[], title: string) => (
-    <View style={styles.section}>
-      <Text variant="titleMedium" style={styles.sectionTitle}>
-        {title}
-      </Text>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.gamesScrollContent}
-      >
-        {games.map((game) => (
-          <View key={game.id} style={styles.gameCard}>
-            <GameTile
-              game={game}
-              onPress={() =>
-                router.push({
-                  pathname: "/game/[id]",
-                  params: { id: game.id },
-                })
-              }
-            />
-          </View>
-        ))}
-      </ScrollView>
-    </View>
-  );
+  //   <View style={styles.section}>
+  //     <Text variant="titleMedium" style={styles.sectionTitle}>
+  //       {title}
+  //     </Text>
+  //     <ScrollView
+  //       horizontal
+  //       showsHorizontalScrollIndicator={false}
+  //       contentContainerStyle={styles.gamesScrollContent}
+  //     >
+  //       {games.map((game) => (
+  //         <View key={game.id} style={styles.gameCard}>
+  //           <GameTile
+  //             game={game}
+  //             onPress={() =>
+  //               router.push({
+  //                 pathname: "/components/GameTile",
+  //                 params: { id: game.id },
+  //               })
+  //             }
+  //           />
+  //         </View>
+  //       ))}
+  //     </ScrollView>
+  //   </View>
+  // );
 
   const handleMultiplayerPress = () => {
     // TODO: Replace with actual premium upgrade logic

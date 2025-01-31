@@ -433,28 +433,142 @@ export const grammarAdvancedQuestions: Array<Question> = [
     text: "Choose the correct subjunctive form: It is essential that he ___ the documents by tomorrow.",
     options: ["submits", "submit", "submitted", "will submit"],
     correctAnswer: "submit",
-    explanation:
-      "In subjunctive mood after phrases like 'it is essential that', we use the base form of the verb.",
+    explanation: "After 'it is essential that', use the base form of the verb (subjunctive mood).",
   },
   {
     id: "gram_adv2",
-    text: "Identify the correct usage of inversion: ___ I realized the magnitude of the problem.",
-    options: ["Only then", "Then only", "Only when", "When only"],
-    correctAnswer: "Only then",
-    explanation:
-      "With 'Only then' at the beginning of a sentence, we use inversion (auxiliary verb before subject).",
+    text: "Which sentence uses the past perfect tense correctly?",
+    options: [
+      "When I arrived, he was already left.",
+      "When I arrived, he had already left.",
+      "When I arrived, he is already left.",
+      "When I arrived, he has already left.",
+    ],
+    correctAnswer: "When I arrived, he had already left.",
+    explanation: "Past perfect is used to show an action completed before another past action.",
   },
   {
     id: "gram_adv3",
+    text: "Identify the correct idiom meaning 'to stop trying':",
+    options: [
+      "Throw in the towel",
+      "Throw under the bus",
+      "Throw caution to the wind",
+      "Throw a fit",
+    ],
+    correctAnswer: "Throw in the towel",
+    explanation: "This idiom originates from boxing, where a trainer throws a towel to stop a fight.",
+  }
+];
+
+export const grammarAdvancedQuestionsNextGame: Array<Question> = [
+  {
+    id: "gram_adv4",
+    text: "Which sentence demonstrates correct use of the conditional perfect?",
+    options: [
+      "If I would have known, I would have come.",
+      "If I had known, I would have come.",
+      "If I knew, I would come.",
+      "If I know, I will come.",
+    ],
+    correctAnswer: "If I had known, I would have come.",
+    explanation: "Conditional perfect is used to express a hypothetical past action.",
+  },
+  {
+    id: "gram_adv5",
+    text: "Choose the correct meaning of the phrasal verb 'give up':",
+    options: [
+      "To provide something",
+      "To surrender or stop trying",
+      "To increase",
+      "To make a gift",
+    ],
+    correctAnswer: "To surrender or stop trying",
+    explanation: "This phrasal verb means to stop attempting something or admit defeat.",
+  },
+  {
+    id: "gram_adv6",
+    text: "Which sentence uses the reported speech correctly?",
+    options: [
+      "She said that she will come tomorrow.",
+      "She said that she would come tomorrow.",
+      "She said that she comes tomorrow.",
+      "She said that she came tomorrow.",
+    ],
+    correctAnswer: "She said that she would come tomorrow.",
+    explanation: "In reported speech, the verb is shifted back one tense from the original statement.",
+  }
+];
+
+export const grammarAdvancedQuestionsThirdGame: Array<Question> = [
+  {
+    id: "gram_adv7",
+    text: "Identify the correct usage of inversion: ___ I realized the magnitude of the problem.",
+    options: ["Only then", "Then only", "Only when", "When only"],
+    correctAnswer: "Only then",
+    explanation: "With 'Only then' at the beginning of a sentence, we use inversion (auxiliary verb before subject).",
+  },
+  {
+    id: "gram_adv8",
     text: "Select the sentence with correct parallel structure:",
     options: [
       "She likes swimming, to dance, and running.",
+      "She likes swimming, dancing, and to run.",
+      "She likes to swim, dance, and run.",
       "She likes swimming, dancing, and running.",
-      "She likes to swim, dance, and to run.",
-      "She likes swimming, dance, and to run.",
     ],
-    correctAnswer: "She likes swimming, dancing, and running.",
-    explanation:
-      "Parallel structure requires using the same grammatical form for all items in a series.",
+    correctAnswer: "She likes to swim, dance, and run.",
+    explanation: "Parallel structure requires using the same grammatical form for all items in a series.",
   },
+  {
+    id: "gram_adv9",
+    text: "Choose the correct meaning of the word 'nuance':",
+    options: [
+      "A subtle difference or shade of meaning",
+      "A strong or obvious difference",
+      "A completely different meaning",
+      "No difference at all",
+    ],
+    correctAnswer: "A subtle difference or shade of meaning",
+    explanation: "Nuance refers to a small, subtle distinction in meaning or expression.",
+  }
+];
+
+export const grammarAdvancedQuestionsFourthGame: Array<Question> = [
+  {
+    id: "gram_adv10",
+    text: "Which sentence uses the correct form of the verb 'to be' in the present perfect continuous tense?",
+    options: [
+      "I have been studying English for three years.",
+      "I am studying English for three years.",
+      "I have studied English for three years.",
+      "I study English for three years.",
+    ],
+    correctAnswer: "I have been studying English for three years.",
+    explanation: "Present perfect continuous is used to describe an action that started in the past and continues up to the present.",
+  },
+  {
+    id: "gram_adv11",
+    text: "Identify the correct use of the semicolon:",
+    options: [
+      "I love cooking; and baking.",
+      "I love cooking and baking.",
+      "I love cooking; baking.",
+      "I love cooking, and baking.",
+    ],
+    correctAnswer: "I love cooking; baking.",
+    explanation: "A semicolon is used to connect two independent clauses that are closely related in meaning.",
+  },
+  {
+    id: "gram_adv12",
+    text: "Choose the sentence with the correct use of the relative pronoun:",
+    options: [
+      "The book who I read was fascinating.",
+      "The book that I read was fascinating.",
+      "The book which I read was fascinating.",
+      "The book whom I read was fascinating.",
+    ],
+    correctAnswer: "The book that I read was fascinating.",
+    explanation: "For things, 'that' or 'which' are typically used as relative pronouns.",
+  }
 ];

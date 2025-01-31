@@ -2,8 +2,10 @@ import React from "react";
 import { Tabs } from "expo-router";
 import { useTheme } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import Avatar from "../components/Avatar";
+import logo from "../../assets/images/edugamez-logo2.png";
+
 
 const renderHeaderRight = () => (
   <Avatar size={40} style={{ marginRight: 10 }} />
@@ -38,6 +40,12 @@ export default function TabLayout() {
             title: "Home",
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" size={size} color={color} />
+            ),
+            headerTitle: () => (
+              <Image
+                source={logo}
+                style={{ width: 120, height: 40, resizeMode: 'contain' }}
+              />
             ),
           }}
         />

@@ -1,0 +1,5 @@
+
+name = "edugamez"
+version = "0.1.0"
+description = "OpenLayers with GeoServer using Bun"
+dependencies = ["ol"]

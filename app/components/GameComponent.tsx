@@ -8,17 +8,25 @@ import {
 } from "react-native";
 import type { Question } from "../types/index";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  grammarAdvancedQuestions,
+  grammarAdvancedQuestionsNextGame,
+  grammarAdvancedQuestionsThirdGame,
+  grammarAdvancedQuestionsFourthGame
+} from "../games/mockQuestions";
 
 interface GameComponentProps {
   questionsCount?: number;
   onGameComplete?: (score: number, total: number) => void;
   questions: Question[];
+  onNextGame?: () => void;
 }
 
 export default function GameComponent({
-  questionsCount = 5,
+  questionsCount = 3,
   onGameComplete,
   questions: providedQuestions,
+  onNextGame,
 }: GameComponentProps) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -27,6 +35,13 @@ export default function GameComponent({
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [currentGameSet, setCurrentGameSet] = useState(0);
+  const gameQuestionSets = [
+    grammarAdvancedQuestions,
+    grammarAdvancedQuestionsNextGame,
+    grammarAdvancedQuestionsThirdGame,
+    grammarAdvancedQuestionsFourthGame
+  ];
 
   useEffect(() => {
     startNewGame();
@@ -75,6 +90,28 @@ export default function GameComponent({
     }
   };
 
+  const handleNextGame = () => {
+    // Increment game set or reset if all sets are completed
+    const nextGameSet = (currentGameSet + 1) % gameQuestionSets.length;
+    setCurrentGameSet(nextGameSet);
+
+    // Start a new game with the next question set
+    const nextQuestions = gameQuestionSets[nextGameSet];
+    const shuffled = [...nextQuestions].sort(() => 0.5 - Math.random());
+    const selectedQuestions = shuffled.slice(
+      0,
+      Math.min(questionsCount, shuffled.length)
+    );
+
+    setQuestions(selectedQuestions);
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setShowExplanation(false);
+    setSelectedAnswer(null);
+    setGameCompleted(false);
+    setIsSubmitted(false);
+  };
+
   if (!questions.length) return null;
 
   if (gameCompleted) {
@@ -82,16 +119,23 @@ export default function GameComponent({
     return (
       <View style={styles.container}>
         <View style={styles.resultContainer}>
-          <Text style={styles.resultTitle}>Results</Text>
+          <Text style={styles.resultTitle}>Game Complete!</Text>
           <View style={styles.scoreContainer}>
-            <Text style={styles.scoreValue}>{finalScore}</Text>
-            <Text style={styles.scoreMax}>/10</Text>
+            <Text style={styles.scoreValue}>{score}</Text>
+            <Text style={styles.scoreMax}>/{questions.length}</Text>
           </View>
           <Text style={styles.commentText}>
             {getCommentMessage(finalScore)}
           </Text>
           <TouchableOpacity style={styles.button} onPress={startNewGame}>
             <Text style={styles.buttonText}>Try Again</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleNextGame}
+          >
+            <Text style={styles.buttonText}>Next Game</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -119,12 +163,12 @@ export default function GameComponent({
                 styles.optionButton,
                 selectedAnswer === option && styles.selectedOption,
                 isSubmitted &&
-                  option === currentQuestion.correctAnswer &&
-                  styles.correctOption,
+                option === currentQuestion.correctAnswer &&
+                styles.correctOption,
                 isSubmitted &&
-                  selectedAnswer === option &&
-                  option !== currentQuestion.correctAnswer &&
-                  styles.wrongOption,
+                selectedAnswer === option &&
+                option !== currentQuestion.correctAnswer &&
+                styles.wrongOption,
               ]}
               onPress={() => !isSubmitted && handleAnswer(option)}
               disabled={isSubmitted}
@@ -134,8 +178,8 @@ export default function GameComponent({
                   style={[
                     styles.optionText,
                     isSubmitted &&
-                      option === currentQuestion.correctAnswer &&
-                      styles.correctOptionText,
+                    option === currentQuestion.correctAnswer &&
+                    styles.correctOptionText,
                   ]}
                 >
                   {option}
@@ -200,10 +244,13 @@ export default function GameComponent({
 }
 
 const getCommentMessage = (score: number) => {
-  if (score === 10) return "Perfect! You're a master! 🏆";
-  if (score >= 8) return "Great job! You're getting really good at this! 🌟";
-  if (score >= 6) return "Good effort! Keep practicing to improve! 💪";
-  if (score >= 4) return "Nice try! More practice will help you improve! 📚";
+  const percentage = (score / 10) * 100;
+  if (percentage === 100) return "Perfect! You're a master! 🏆";
+  if (percentage >= 80)
+    return "Great job! You're getting really good at this! 🌟";
+  if (percentage >= 60) return "Good effort! Keep practicing to improve! 💪";
+  if (percentage >= 40)
+    return "Nice try! More practice will help you improve! 📚";
   return "Don't give up! Practice makes perfect! 🎯";
 };
 

@@ -12,6 +12,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Game } from "../types";
 import { subjects } from "../constants/subjects";
 import GameComponent from "./GameComponent";
+import { Header } from "./Header";
 import {
   algebraQuestions,
   trigonometryQuestions,
@@ -43,7 +44,6 @@ export function GameTile({ game, onPress }: GameTileProps) {
     const newProgress = score / total;
     // TODO: Update game progress in your state management system
     console.log(`Game completed with score: ${score}/${total}`);
-    setShowGame(false);
   };
 
   const getGameQuestions = () => {
@@ -122,6 +122,7 @@ export function GameTile({ game, onPress }: GameTileProps) {
           style={styles.modal}
         >
           <SafeAreaView style={styles.modalContainer}>
+            <Header />
             <View style={styles.modalHeader}>
               <IconButton
                 icon="close"
@@ -129,7 +130,7 @@ export function GameTile({ game, onPress }: GameTileProps) {
                 onPress={() => setShowGame(false)}
               />
               <Text style={styles.modalTitle}>{game.topic}</Text>
-              <View style={{ width: 48 }} /> {/* Spacer for alignment */}
+              <View style={{ width: 48 }} />
             </View>
             <View style={styles.modalContent}>
               <GameComponent
@@ -221,6 +222,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
     backgroundColor: "#fff",
+    height: 56,
   },
   modalTitle: {
     fontSize: 18,
@@ -229,5 +231,8 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     flex: 1,
+  },
+  spacer: {
+    width: 24,
   },
 });
